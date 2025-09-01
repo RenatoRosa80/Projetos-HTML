@@ -1,0 +1,34 @@
+// app/api/products/route.ts
+import { NextResponse } from "next/server";
+import { db } from "@/app/_db";
+import { productTable } from "@/app/_db/schema";
+import { desc } from "drizzle-orm";
+
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const page = Number(searchParams.get("page") || 1);
+  const categoryId = searchParams.get("categoryId");
+  const limit = 10;
+  const offset = (page - 1) * limit;
+
+  let products;
+
+  if (categoryId) {
+    products = await db.query.productTable.findMany({
+      where: (fields, { eq }) => eq(fields.categoryId, categoryId),
+      with: { variants: true },
+      orderBy: [desc(productTable.createdAt)],
+      limit,
+      offset,
+    });
+  } else {
+    products = await db.query.productTable.findMany({
+      with: { variants: true },
+      orderBy: [desc(productTable.createdAt)],
+      limit,
+      offset,
+    });
+  }
+
+  return NextResponse.json(products);
+}

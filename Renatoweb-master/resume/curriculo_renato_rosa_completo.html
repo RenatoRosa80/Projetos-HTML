@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Currículo — Renato Rosa dos Santos Filho</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-light: #f4f6f8;
+      --card-light: #ffffff;
+      --text-light: #0f1724;
+      --muted-light: #6b7280;
+      --accent-light: #0f62fe;
+      --chip-light: #eef2ff;
+
+      --bg-dark: #0b0f14;
+      --card-dark: #121826;
+      --text-dark: #e7edf3;
+      --muted-dark: #9aa4b2;
+      --accent-dark: #4f8cff;
+      --chip-dark: #1b2334;
+    }
+
+    body.light {
+      --bg: var(--bg-light);
+      --card: var(--card-light);
+      --text: var(--text-light);
+      --muted: var(--muted-light);
+      --accent: var(--accent-light);
+      --chip: var(--chip-light);
+    }
+    body.dark {
+      --bg: var(--bg-dark);
+      --card: var(--card-dark);
+      --text: var(--text-dark);
+      --muted: var(--muted-dark);
+      --accent: var(--accent-dark);
+      --chip: var(--chip-dark);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background:var(--bg);
+      color:var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+    .wrap{max-width:1000px;margin:36px auto;padding:20px;}
+    .card{background:var(--card);border-radius:10px;overflow:hidden;
+          box-shadow:0 8px 30px rgba(16,24,40,0.08);transition: background 0.3s;}
+    header{display:flex;flex-wrap:wrap;gap:18px;align-items:center;
+           padding:28px;border-bottom:1px solid rgba(15,23,36,0.06);}
+    .profile{flex:1 1 520px;}
+    h1{margin:0;font-size:1.6rem;letter-spacing:0.2px;}
+    .subtitle{margin-top:6px;color:var(--muted);font-size:0.98rem;}
+    .contact{margin-top:12px;color:var(--muted);font-size:0.92rem;}
+    .contact a{color:var(--accent);text-decoration:none;margin-right:12px}
+    .actions{margin-left:auto;display:flex;gap:10px;align-items:center;}
+    .btn{background:var(--accent);color:white;padding:8px 12px;border-radius:8px;
+         text-decoration:none;font-weight:600;font-size:0.9rem}
+    .toggle{background:none;border:1px solid var(--muted);padding:8px 12px;
+            border-radius:8px;cursor:pointer;font-size:0.9rem;color:var(--text);
+            transition: all 0.3s;}
+    main{display:grid;grid-template-columns:2fr 1fr;gap:28px;padding:28px;}
+    section{margin-bottom:18px;}
+    section h2{margin:0 0 12px 0;font-size:0.95rem;color:var(--accent);letter-spacing:0.7px}
+    .experience .job{margin-bottom:12px;padding-bottom:12px;
+                     border-bottom:1px dashed rgba(15,23,36,0.06)}
+    .job .role{font-weight:700}
+    .job .meta{color:var(--muted);font-size:0.9rem;margin-top:4px}
+    ul{margin:8px 0 0 18px}
+    li{margin:6px 0;font-size:0.95rem;color:var(--text)}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .chip{background:var(--chip);padding:6px 10px;border-radius:999px;font-weight:600;
+          color:var(--accent);font-size:0.85rem}
+    aside{padding:4px 8px 8px 8px;border-left:1px solid rgba(15,23,36,0.06)}
+    .small{font-size:0.9rem;color:var(--muted)}
+    footer{padding:18px;border-top:1px solid rgba(15,23,36,0.04);
+           text-align:center;color:var(--muted);font-size:0.9rem}
+    @media (max-width:880px){
+      main{grid-template-columns:1fr}
+      .actions{order:3;width:100%;justify-content:flex-start}
+      aside{border-left:0}
+    }
+  </style>
+</head>
+<body class="light">
+  <div class="wrap">
+    <div class="card">
+      <header>
+        <div class="profile">
+          <h1>Renato Rosa dos Santos Filho</h1>
+          <div class="subtitle">Profissional de Laboratório | Migração para Desenvolvimento Web Full Stack</div>
+          <div class="contact">
+            Data de nascimento: 05/02/1980 • Localização: Brasil • Endereço: Liesenstraße 3, Berlim, Alemanha<br>
+            <a href="tel:+5521973969501">+55 21 97396-9501</a> • 
+            <a href="mailto:renatto.rfilho@yahoo.com">renatto.rfilho@yahoo.com</a>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn" href="https://www.linkedin.com/in/renatorosa" target="_blank">
+            <i class="fab fa-linkedin" style="margin-right:8px"></i>LinkedIn
+          </a>
+          <a class="btn" href="https://github.com/renatorosa" target="_blank">
+            <i class="fab fa-github" style="margin-right:8px"></i>GitHub
+          </a>
+          <button class="toggle" onclick="toggleMode()">🌙 / ☀️</button>
+        </div>
+      </header>
+
+      <main>
+        <div>
+          <section class="experience">
+            <h2>Experiência Profissional</h2>
+
+            <div class="job">
+              <div class="role">Application Specialist</div>
+              <div class="meta">Labdock (Alemanha) & Labtechnologies (Suíça) — Jun 2022</div>
+              <ul>
+                <li>Manutenção de sistemas laboratoriais e suporte online a clientes.</li>
+                <li>Programação em Python — treinamento interno (6 meses).</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <div class="role">Biomédico</div>
+              <div class="meta">MDI Limbach Laboratory — Jan 2021 – Dez 2021</div>
+              <ul>
+                <li>Química clínica; análise de hormônios; imuno-hematologia para transfusão.</li>
+                <li>Hematologia — automação e revisão em microscopia.</li>
+                <li>Calibração e manutenção de equipamentos de bioquímica.</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <div class="role">Biomédico — Microbiologia / Urologia</div>
+              <div class="meta">Herr Dr. Bargel — Laboratório de Diagnóstico (Urologista) — Jan 2020 – Dez 2020</div>
+              <ul>
+                <li>Microbiologia de urina e análise de urinálise.</li>
+                <li>Coleta de sangue e preparo de amostras.</li>
+                <li>Operação e calibração de equipamentos para testes de antibióticos em urinálise.</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <div class="role">Cuidador de Idosos</div>
+              <div class="meta">2017 – 2019</div>
+              <ul>
+                <li>Administração de medicamentos, auxílio em higiene pessoal e alimentação.</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <div class="role">Coordenador Biomédico</div>
+              <div class="meta">Rede D'Or — Hospitais e Laboratórios — 2014 – 2016</div>
+              <ul>
+                <li>Coordenação de equipe e escala de trabalho mensal.</li>
+                <li>Validação e calibração de equipamentos.</li>
+                <li>Revisão de hematologia em microscopia; treinamento da equipe.</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <div class="role">Proprietário / Gestor</div>
+              <div class="meta">Laboratório Santa Cecília — 2012 – 2014</div>
+              <ul>
+                <li>Gestão administrativa e operacional do laboratório.</li>
+                <li>Montagem e venda de laboratórios; recrutamento e treinamento.</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <div class="role">Coordenador Biomédico</div>
+              <div class="meta">— 2010 – 2012</div>
+              <ul>
+                <li>Coordenação de equipes e de hematologia.</li>
+                <li>Gestão de automação laboratorial e controle de qualidade.</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <div class="role">Coordenador Biomédico</div>
+              <div class="meta">— 2006 – 2010</div>
+              <ul>
+                <li>Recrutamento, treinamento e coordenação de equipes.</li>
+                <li>Implantação de laboratórios hospitalares e de emergência.</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <div class="role">Estudante de Biomedicina / Pesquisador (Estágio)</div>
+              <div class="meta">Uniube &amp; Laboratório Jorge Furtado — 2002 – 2004</div>
+              <ul>
+                <li>Pesquisa em influenza (associação Uniube / Jorge Furtado / Pharmachemie).</li>
+                <li>Bioensaios (qPCR, ELISA) e separações (HPLC).</li>
+              </ul>
+            </div>
+
+            <div class="job">
+              <div class="role">Research trainee — HLA Cells</div>
+              <div class="meta">2005</div>
+            </div>
+          </section>
+        </div>
+
+        <aside>
+          <section>
+            <h2>Educação</h2>
+            <div class="job">
+              <div class="role">Bacharel em Ciências Biomédicas e Diagnóstico Clínico</div>
+              <div class="meta">2006</div>
+            </div>
+            <div class="job">
+              <div class="role">Estágio – Laboratório Jorge Furtado</div>
+              <div class="meta">2002 – 2006</div>
+            </div>
+            <div class="job">
+              <div class="role">Patologia Clínica</div>
+              <div class="meta">2000 – 2002</div>
+            </div>
+          </section>
+
+          <section>
+            <h2>Curso em Andamento</h2>
+            <div class="job">
+              <div class="role">Curso para Migração Profissional em Full Stack Web Development</div>
+              <div class="meta">Faculdades SENAC — Conclusão prevista: 03/02/2026</div>
+              <div class="chips">
+                <span class="chip">Python</span>
+                <span class="chip">JavaScript</span>
+                <span class="chip">HTML</span>
+                <span class="chip">CSS</span>
+                <span class="chip">Banco de Dados</span>
+                <span class="chip">Django</span>
+                <span class="chip">React</span>
+                <span class="chip">Node.js</span>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2>Idiomas</h2>
+            <div class="chips">
+              <span class="chip">Inglês — C1</span>
+              <span class="chip">Alemão — B2</span>
+            </div>
+          </section>
+        </aside>
+      </main>
+
+      <footer>
+        Curriculum Vitae — Renato Rosa dos Santos Filho • Versão: agosto/2025
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark');
+      document.body.classList.toggle('light');
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+</body>
+</html>
+```
+
+---
+
+✅ Esse HTML já vem:
+
+* com **todas as experiências completas**
+* com **curso SENAC**
+* com **links de contato (LinkedIn, GitHub, e-mail, telefone)**
+* e com **modo escuro/claro alternável** 🌙 / ☀️.
+
+Quer que eu gere também a versão **PDF estilizada** a partir desse HTML?
