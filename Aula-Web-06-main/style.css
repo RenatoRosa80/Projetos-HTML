@@ -1,0 +1,273 @@
+body {
+  margin: 2.5%;
+  color: #777171;
+ 
+}
+
+
+.decoration {
+    color: rgb(148, 14, 14);
+    letter-spacing: 2px;
+    
+}
+h1 {
+    text-align: center;
+    text-decoration: underline;
+}
+
+/* Centraliza a imagem do logo */
+#topo {
+    display: flex;
+    justify-content: center; /* alinha no centro horizontal */
+    align-items: center;     /* opcional: centraliza vertical */
+    margin: 20px 0;
+}
+
+#logo img {
+    max-width: auto; /* ajusta o tamanho máximo do logo */
+    height: auto;
+    display: block;
+    width: 800px!important;
+    height: 600px!important;
+    border-radius: 1.5%;
+}
+
+#berliner img {
+  text-align: right;
+  border-image: auto;
+  border-radius: 1.5%;
+  display: block;
+  width: 350px!important;
+  height: 175px!important;
+
+}
+
+
+#banner img {
+  text-align: left;
+  border-image: auto;
+  border-radius: 1.5%;
+  display: block;
+  width: 350px!important;
+  height: 175px!important;
+}
+
+
+#banner2 img {
+  border-image: auto;
+  border-radius: 1.5%;
+  display: block;
+  width: 350px!important;
+  height: 175px!important;
+  
+}
+
+#banner3 img {
+  border-image: auto;
+  border-radius: 1.5%;
+  display: block;
+  width: 350px!important;
+  height: 175px!important;
+}
+
+#banner4 img {
+  border-image: auto;
+  border-radius: 1.5%;
+  display: block;
+  width: 350px!important;
+  height: 175px!important;
+}
+
+#Berliner03 img {
+  text-align: right;
+  border-image: auto;
+  border-radius: 1.5%;
+  display: block;
+  width: 800px;
+  height: 185px;
+}
+
+
+#espanha img {
+  border-image: auto;
+  border-radius: 1.5%;
+  display: block;
+  width: 350px!important;
+  height: 175px!important;
+}
+
+
+#espanha01 img {
+  border-image: auto;
+  border-radius: 1.5%;
+  display: block;
+  width: 350px!important;
+  height: 175px!important;
+}
+
+
+#espanha02 img {
+  border-image: auto;
+  border-radius: 1.5%;
+  display: block;
+  width: 350px!important;
+  height: 175px!important;
+}
+
+
+#espanha03 img {
+  border-image: auto;
+  border-radius: 1.5%;
+  display: block;
+  width: 350px!important;
+  height: 175px!important;
+}
+
+.block {
+  display: flex;
+  gap: 20px;
+  margin: 30px 0;
+  align-items: flex-start;
+}
+
+.block p {
+    flex: 1; /* Faz o texto ocupar o espaço restante */
+    text-align:justify;
+    color: #444;
+}
+
+legend {
+  text-align: left;
+  text-shadow: #423e3e;
+  color:brown solid;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+#paises {
+  margin: 30px 0;
+}
+
+#paises h2 {
+  margin-bottom: 15px;
+}
+
+#paises figure {
+  width: 40%;       /* imagem ocupa 40% */
+  margin: 0;
+}
+
+#paises figure img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+
+#paises p {
+  
+  display: inline-block;
+  vertical-align:middle;
+  font-size: larger;
+  color: black solid;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+#paises {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  box-shadow: 5px 10px 5px rgba(163, 108, 108, 0.1);
+
+}
+
+#paises .block {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+#informacao {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin: auto;
+  box-shadow: 8px 10px 5px rgba(105, 2, 2, 0.1);
+
+}
+#explicacao {
+    flex:auto;
+    font-size: larger;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: left;
+    color: black solid;
+    margin: auto;
+    
+}
+
+
+ .travel-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 30px 0;
+  }
+
+
+ .cidades {
+      flex: 1;
+      max-width: 400px;
+      padding: 20px;
+      background-color: #dcd1d1;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+
+.pra-onde {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+
+.plan-price {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+
+.planning {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+
+.planning li {
+      margin-bottom: auto;
+    }
+
+
+.plan-button {
+  margin: 5%;
+  padding: 10px;
+  background-color: #ff6600;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+}
+
+
+@media (max-width: 1250px) {
+      #total {
+        flex-direction: column;
+        height: 100%;
+      }
+    }
+
+
+
+
