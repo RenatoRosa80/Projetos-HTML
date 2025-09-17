@@ -1,718 +1,827 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Contabilizando</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Bootstrap Icons -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-        <style>
-
-            body {
-                margin: 20px;
-            }
-            .conta {
-                color: midnightblue;
-                font-weight: bold;
-            }
-
-            .container {
-                background-color: rgb(5, 178, 178);
-                
-            }
-
-            /* quadrado dos ícones */
-            .feature-icon-small {
-                width: 3rem;
-                height: 3rem;
-                font-size: 1.5rem;  /* tamanho do ícone */
-            }
-
-            /* garantir que o svg use o font-size sem distorcer */
-            .feature-icon-small svg {
-                width: 1em;
-                height: 1em;
-            }
-            
-            .toggler {  width: 500px; height: 200px; display: flex; flex-direction: column;
-}           #button { padding: .5em 1em; text-decoration: none; }
-            #effect { width: 240px; height: 170px; padding: 0.4em; position: relative; background: #fff; }
-            #effect h3 { margin: 0; padding: 0.4em; text-align: center; }
-            
-            h3 {
-                text-align: right;
-                text-decoration: underline;
-                color: black solid;
-            }
-
-            .box {
-                border: 2px solid #ccc;   /* borda da caixa */
-                border-radius: 10px;      /* cantos arredondados */
-                padding: 20px;            /* espaço interno */
-                margin: 20px 0;           /* espaço externo */
-                background-color: #f9f9f9; /* cor de fundo suave */
-                box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* sombra para destaque */
-            }
-
-            .card-text {
-                text-align: left;
-                
-            }
-
-            .card-body {
-                height: 113px;
-
-            }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contabilizando</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
 
 
-            /* Define um tamanho fixo para todas as imagens dos cards */
+    <style>
+
+        html {
+            scroll-behavior: smooth;
+        }
+        
+
+        body {
+            margin: 20px;
+        }
+
+        .conta {
+            color: midnightblue;
+            font-weight: bold;
+        }
+
+        .container {
+            background-color: rgb(5, 178, 178);
+
+        }
+
+        /* quadrado dos ícones */
+        .feature-icon-small {
+            width: 3rem;
+            height: 3rem;
+            font-size: 1.5rem;
+            /* tamanho do ícone */
+        }
+
+        /* garantir que o svg use o font-size sem distorcer */
+        .feature-icon-small svg {
+            width: 1em;
+            height: 1em;
+        }
+
+        .toggler {
+            width: 500px;
+            height: 200px;
+        }
+
+        #button {
+            padding: .5em 1em;
+            text-decoration: none;
+        }
+
+        #effect {
+            position: relative;
+            width: 240px;
+            height: 170px;
+            padding: 0.4em;
+        }
+
+        #effect h3 {
+            margin: 0;
+            padding: 0.4em;
+            text-align: center;
+        }
+
+        h3 {
+            text-align: right;
+            text-decoration: underline;
+            color: black solid;
+        }
+
+        .box {
+            border: 2px solid #ccc;
+            /* borda da caixa */
+            border-radius: 10px;
+            /* cantos arredondados */
+            padding: 20px;
+            /* espaço interno */
+            margin: 20px 0;
+            /* espaço externo */
+            background-color: #f9f9f9;
+            /* cor de fundo suave */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            /* sombra para destaque */
+        }
+
+        .card-text {
+            text-align: left;
+
+        }
+
+        .card-body {
+            height: 113px;
+
+        }
+
+
+        /* Define um tamanho fixo para todas as imagens dos cards */
+        .card img {
+            width: 100%;
+            height: 250px;
+            /* Altura fixa */
+            object-fit: cover;
+            /* Mantém a proporção e preenche o espaço */
+            object-position: center;
+            /* Centraliza a imagem */
+        }
+
+        /* Opcional: responsividade para diferentes tamanhos de tela */
+        @media (max-width: 768px) {
             .card img {
-                width: 100%;
-                height: 250px; /* Altura fixa */
-                object-fit: cover; /* Mantém a proporção e preenche o espaço */
-                object-position: center; /* Centraliza a imagem */
+                height: 200px;
+                /* Altura menor em tablets */
             }
+        }
 
-            /* Opcional: responsividade para diferentes tamanhos de tela */
-            @media (max-width: 768px) {
-                .card img {
-                    height: 200px; /* Altura menor em tablets */
-                }
+        @media (max-width: 576px) {
+            .card img {
+                height: 180px;
+                /* Altura menor em celulares */
             }
+        }
 
-            @media (max-width: 576px) {
-                .card img {
-                    height: 180px; /* Altura menor em celulares */
-                }
-            }
+        body {
+            background: #f4eeee
+        }
 
-            body {
-                background: #f4eeee
-            }
-                
-    
-            <!---Segundo css-->
-        
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            }
-            
-            
-            .container2 {
-                max-width: 1200px;
-                margin: 0 auto;
-            }
-            
-            .header {
-                text-align: center;
-                margin-bottom: 30px;
-            }
-            
-            .header h1 {
-                color: #7537ae;
-                font-size: 2.5rem;
-                margin-bottom: 15px;
-                font-weight: 800;
-            }
 
-                        
-            .header p {
-                color: #575757;
-                font-size: 1.1rem;
-                max-width: 800px;
-                margin: 0 auto;
-            }
-            
-            .plan-toggle {
-                display: flex;
-                justify-content: center;
-                background-color: #f0f0f0;
-                border-radius: 50px;
-                padding: 5px;
-                width: fit-content;
-                margin: 0 auto 40px;
-            }
-            
-            .toggle-btn {
-                padding: 12px 30px;
-                border-radius: 50px;
-                border: none;
-                font-weight: 700;
-                cursor: pointer;
-                transition: all 0.3s ease;
-            }
-            
-            .toggle-btn.active {
-                background-color: #7537ae;
-                color: white;
-            }
-            
-            .toggle-btn.inactive {
-                background-color: white;
-                color: #575757;
-            }
-            
-            .toggle-btn.inactive:hover {
-                background-color: #e9ecef;
-            }
-            
+        .container2 {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #7537ae;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+
+        .header p {
+            color: #575757;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .plan-toggle {
+            display: flex;
+            justify-content: center;
+            background-color: #f0f0f0;
+            border-radius: 50px;
+            padding: 5px;
+            width: fit-content;
+            margin: 0 auto 40px;
+        }
+
+        .toggle-btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn.active {
+            background-color: #7537ae;
+            color: white;
+        }
+
+        .toggle-btn.inactive {
+            background-color: white;
+            color: #575757;
+        }
+
+        .toggle-btn.inactive:hover {
+            background-color: #e9ecef;
+        }
+
+        .plans-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .plan-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .plan-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #e2d5ed;
+            color: #7537ae;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            z-index: 10;
+        }
+
+        .plan-card.featured {
+            border: 2px solid #e2d5ed;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .plan-description {
+            color: #666;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .plan-pricing {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #888;
+            font-size: 1rem;
+        }
+
+        .current-price {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #333;
+            margin: 5px 0;
+        }
+
+        .price-period {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .discount-badge {
+            background-color: #f0e6f9;
+            color: #7537ae;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin: 10px auto;
+        }
+
+        .plan-button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 20px 0;
+        }
+
+        .plan-button:hover {
+            background-color: #3d8b40;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .feature-icon {
+            color: #7537ae;
+            margin-right: 10px;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .feature-text {
+            color: #444;
+            font-size: 0.95rem;
+        }
+
+        .info-icon {
+            display: inline-block;
+            color: #7537ae;
+            margin-left: 5px;
+            cursor: help;
+            position: relative;
+        }
+
+        .info-tooltip {
+            display: none;
+            position: absolute;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            width: 250px;
+            z-index: 100;
+            bottom: 25px;
+            right: -80px;
+            font-size: 0.85rem;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        .info-icon:hover .info-tooltip {
+            display: block;
+        }
+
+        .footer-note {
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        @media (max-width: 768px) {
             .plans-container {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 25px;
-                margin-bottom: 40px;
+                grid-template-columns: 1fr;
             }
-            
-            .plan-card {
-                background: white;
-                border-radius: 20px;
-                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-                padding: 25px;
-                position: relative;
-                transition: transform 0.3s ease;
-            }
-            
-            .plan-card:hover {
-                transform: translateY(-5px);
-            }
-            
-            .plan-badge {
-                position: absolute;
-                top: -12px;
-                left: 50%;
-                transform: translateX(-50%);
-                background-color: #e2d5ed;
-                color: #7537ae;
-                padding: 8px 20px;
-                border-radius: 50px;
-                font-weight: 700;
-                font-size: 0.9rem;
-                z-index: 10;
-            }
-            
-            .plan-card.featured {
-                border: 2px solid #e2d5ed;
-            }
-            
-            .plan-name {
-                font-size: 1.5rem;
-                color: #333;
-                margin-bottom: 10px;
-                text-align: center;
-                font-weight: 700;
-            }
-            
-            .plan-description {
-                color: #666;
-                text-align: center;
-                margin-bottom: 20px;
-                font-size: 0.95rem;
-            }
-            
-            .plan-pricing {
-                text-align: center;
-                margin-bottom: 20px;
-            }
-            
-            .original-price {
-                text-decoration: line-through;
-                color: #888;
-                font-size: 1rem;
-            }
-            
-            .current-price {
-                font-size: 2rem;
-                font-weight: 900;
-                color: #333;
-                margin: 5px 0;
-            }
-            
-            .price-period {
-                color: #666;
-                font-size: 1rem;
-            }
-            
-            .discount-badge {
-                background-color: #f0e6f9;
-                color: #7537ae;
-                padding: 5px 15px;
-                border-radius: 50px;
-                font-weight: 700;
-                font-size: 0.9rem;
-                display: inline-block;
-                margin: 10px auto;
-            }
-            
-            .plan-button {
-                display: block;
+
+            .plan-toggle {
+                flex-direction: column;
                 width: 100%;
-                padding: 12px;
-                background-color: #4caf50;
-                color: white;
-                border: none;
-                border-radius: 50px;
-                font-weight: 700;
-                cursor: pointer;
-                transition: background-color 0.3s ease;
-                margin: 20px 0;
             }
-            
-            .plan-button:hover {
-                background-color: #3d8b40;
-            }
-            
-            .features-list {
-                list-style: none;
-                margin-top: 20px;
-            }
-            
-            .feature-item {
-                display: flex;
-                align-items: flex-start;
-                margin-bottom: 15px;
-            }
-            
-            .feature-icon {
-                color: #7537ae;
-                margin-right: 10px;
-                flex-shrink: 0;
-                margin-top: 3px;
-            }
-            
-            .feature-text {
-                color: #444;
-                font-size: 0.95rem;
-            }
-            
-            .info-icon {
-                display: inline-block;
-                color: #7537ae;
-                margin-left: 5px;
-                cursor: help;
-                position: relative;
-            }
-            
-            .info-tooltip {
-                display: none;
-                position: absolute;
-                background: white;
-                padding: 15px;
-                border-radius: 8px;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-                width: 250px;
-                z-index: 100;
-                bottom: 25px;
-                right: -80px;
-                font-size: 0.85rem;
-                color: #333;
-                line-height: 1.4;
-            }
-            
-            .info-icon:hover .info-tooltip {
-                display: block;
-            }
-            
-            .footer-note {
-                text-align: center;
-                color: #666;
-                font-size: 0.9rem;
-                margin-top: 30px;
-                padding-top: 20px;
-                border-top: 1px solid #eee;
-            }
-            
-            @media (max-width: 768px) {
-                .plans-container {
-                    grid-template-columns: 1fr;
-                }
-                
-                .plan-toggle {
-                    flex-direction: column;
-                    width: 100%;
-                }
-                
-                .toggle-btn {
-                    width: 100%;
-                    margin-bottom: 10px;
-                }
-            }
-        </style>
 
-        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-        <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+            .toggle-btn {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
 
-        <script>
-            $( function() {
-                var state = true;
-                $( "#button" ).on( "click", function() {
-                    if ( state ) {
-                        $( "#effect" ).animate({
-                            backgroundColor: "#aa0000",
-                            color: "#fff",
-                            width: 500
-                        }, 1000 );
-                    } else {
-                        $( "#effect" ).animate({
-                            backgroundColor: "#fff",
-                            color: "#000",
-                            width: 240
-                        }, 1000 );
-                    }
-                    state = !state;
-                });
-            } );
-        </script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 70px; /* Para compensar o header fixo */
+        }
         
-    </head>
-    <body>
-
-        <div class="container -xxl">
-            <div class="container"> 
-                <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-                    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"> 
-                        <svg class="bi me-2" width="40" height="32" aria-hidden="true">
-                            <use xlink:href="#bootstrap"></use>
-                        </svg> 
-                        <span class="fs-4">Jamilson J.</span> 
-                    </a> 
-                    <ul class="nav nav-pills"> 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link active" aria-current="page">Home</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Features</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Preco</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">FAQs</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Sobre</a>
-                        </li> 
-                    </ul> 
-                </header> 
-            </div>
+        /* Header com altura reduzida e fundo gelado */
+        header {
+            background: linear-gradient(135deg, #e6f7ff 0%, #f0f8ff 50%, #e6f3ff 100%);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            padding: 0.4rem 0;
+            height: 70px; /* Altura reduzida */
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            min-height: 60px;
+        }
+        
+        .navbar-brand img {
+            height: 40px; /* Logo menor para combinar com header reduzido */
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand img:hover {
+            transform: scale(1.05);
+        }
+        
+        .navbar-nav .nav-link {
+            color: #2c6aa0 !important;
+            font-weight: 500;
+            padding: 0.5rem 1.2rem !important;
+            margin: 0 0.2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            color: #1a4d80 !important;
+            background-color: rgba(255, 255, 255, 0.7);
+            transform: translateY(-2px);
+        }
+        
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 5px;
+            left: 50%;
+            background-color: #2c6aa0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-nav .nav-link:hover::after {
+            width: 70%;
+            left: 15%;
+        }
+        
+        .navbar-toggler {
+            border: none;
+            padding: 0.4rem 0.6rem;
+        }
+        
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 2px rgba(44, 106, 160, 0.3);
+        }
+        
+        .content {
+            padding: 3rem 1rem;
+            text-align: center;
+            color: #2c6aa0;
+        }
+        
+        .content h1 {
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .content p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+        
+        .demo-img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 1.5rem 0;
+        }
+        
+        @media (max-width: 991.98px) {
+            .navbar-nav {
+                padding: 1rem 0;
+                background: linear-gradient(135deg, #e6f7ff 0%, #f0f8ff 100%);
+                border-radius: 10px;
+                margin-top: 0.5rem;
+            }
             
-            <!--Cabecalho - Titulo-->
-            <div class="px-4 pt-5 my-5 text-center border-bottom"> 
-                <h1 class="display-4 fw-bold text-body-emphasis"><span class="conta">Conta</span>bilizando</h1>
-                <h2>Está precisando trocar de contador?<br> Cuidamos de todo o processo pra você.</h2> 
-                <div class="col-lg-6 mx-auto"> 
-                    <p class="lead mb-4">Chega de surpresas no pagamento de impostos, pouca clareza e suporte que nunca resolve.
-                    Conte com um time de contadores especialistas que entregam suas obrigações fiscais no prazo, mantém tudo organizado, com transparência, em uma plataforma simples e fácil de usar.</p> 
-                </div> 
-                <div class="overflow-hidden" style="max-height: 30vh;"> 
-                    <div class="container px-5"> 
-                        <img src="image/logo.jpeg" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="mx-auto" height="mx-auto" loading="lazy"> 
-                    </div> 
-                </div> 
-            </div>
-        </div>
+            .navbar-nav .nav-link {
+                padding: 0.8rem 1.5rem !important;
+            }
+        }
+    </style>
 
-        <!--Corpo do texto-->
-        <div class="box">
-            <div class="container2">
-                <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5"> 
-                    <div class="col d-flex flex-column align-items-start gap-2"> 
-                        <h2 class="fw-bold text-body-emphasis">Porque escolher a Contabilizando?</h2> 
-                        <p class="text-body-secondary lead mb-3">Porque fazemos Contabilidade prática para o seu dia a dia.</p> 
-                    </div> 
-                    <div class="col"> 
-                        <div class="row row-cols-1 row-cols-sm-2 g-4"> 
-                            <div class="col d-flex flex-column gap-2"> 
-                                <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3"> 
-                                    <i class="bi bi-collection"></i>
-                                </div> 
-                                <h4 class="fw-semibold mb-0 text-body-emphasis">Atendimento Rápido</h4> 
-                                <p class="text-body-secondary">Tenha suporte com contadores que vão garantir que sua empresa esteja regularizada, e sem necessidade de pagamento do 13º salário.</p> 
-                            </div> 
-                            <div class="col d-flex flex-column gap-2"> 
-                                <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3"> 
-                                    <i class="bi bi-toggles2"></i>
-                                </div> 
-                                <h4 class="fw-semibold mb-0 text-body-emphasis">Contabilidade Completa</h4> 
-                                <p class="text-body-secondary">Cuidamos de todas as obrigações contábeis, desde cálculo de impostos, declarações e o que for preciso junto a Receita Federal, estadual e prefeitura.</p> 
-                            </div> 
-                            <div class="col d-flex flex-column gap-2"> 
-                                <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3"> 
-                                    <i class="bi bi-speedometer"></i>
-                                </div> 
-                                <h4 class="fw-semibold mb-0 text-body-emphasis">Atuacao Nacional</h4> 
-                                <p class="text-body-secondary">Atendemos todos os estados do Brasil com praticidade, agilidade e suporte para facilitar sua rotina contábil onde você estiver.</p> 
-                            </div> 
-                            <div class="col d-flex flex-column gap-2"> 
-                                <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3"> 
-                                    <i class="bi bi-gear-fill"></i>
-                                </div> 
-                                <h4 class="fw-semibold mb-0 text-body-emphasis">Atendimento prátio e Rápido</h4> 
-                                <p class="text-body-secondary">Nos adaptamos ao seu tempo e necessidade.</p> 
-                            </div> 
-                        </div> 
-                    </div> 
+
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"> <img src="image/logo.png" alt="contabilidade logo">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav ms-auto">
+                        <a class="nav-link active" aria-current="page" href="#porque">Porque Nós</a>
+                        <a class="nav-link active" aria-current="page" href="#funciona">Como funciona</a>
+                        <a class="nav-link active" aria-current="page" href="#servicos">Serviços</a>
+                        <a class="nav-link active" aria-current="page" href="#contato">Contatos</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container -xxl">
+
+        <!--Cabecalho - Titulo-->
+        <div class="px-4 pt-5 my-5 text-center border-bottom">
+            <h1 class="display-4 fw-bold text-body-emphasis"><span class="conta">Conta</span>bilizando</h1>
+            <h2>Está precisando trocar de contador?<br> Cuidamos de todo o processo pra você.</h2>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">Chega de surpresas no pagamento de impostos, pouca clareza e suporte que nunca
+                    resolve.
+                    Conte com um time de contadores especialistas que entregam suas obrigações fiscais no prazo, mantém
+                    tudo organizado, com transparência, em uma plataforma simples e fácil de usar.</p>
+            </div>
+            <div class="overflow-hidden" style="max-height: 30vh;">
+                <div class="container px-5">
+                    <img src="image/logo.jpeg" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image"
+                        width="mx-auto" height="mx-auto" loading="lazy">
                 </div>
             </div>
         </div>
+    </div>
 
-        <!--Corpo texto secubdário-->
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"> 
-            <div class="col"> 
-                <div class="card shadow-sm"> 
-                    <img src="image/thum01.jpeg"  alt="contab foto">
-                    <div class="card-body"> 
-                        <p class="card-text">Análise de informações:
-                        Nossos contadores vão analisar as informações da sua empresa e, em até 24 horas, enviaremos um relatório completo, para que sua empresa esteja regularizada.</p> 
-                    </div> 
-                </div> 
-            </div> 
-            <div class="col"> 
-                <div class="card shadow-sm"> 
-                    <img src="image/cont3.jpeg" alt="foto ilustrativa Contabilidade">
-                    <div class="card-body"> 
-                        <p class="card-text">Envio de documentações:
-                        Agora você só precisa enviar para nossos especialistas todas as documentações necessárias para assumirmos a sua contabilidade.</p> 
-                    </div> 
-                </div> 
-            </div> 
-            <div class="col"> 
-                <div class="card shadow-sm"> 
-                    <img src="image/thumb03.jpeg" alt="foto ilustrativa Contabilidade">
-                    <div class="card-body"> 
-                        <p class="card-text">Tudo pronto!
-                        Agora sua contabilidade faz parte da Agilize! A partir de agora assumimos toda a parte burocrática e você pode focar no que importa: fazer a sua empresa crescer.</p> 
-                    </div> 
-                </div> 
-            </div>
-        </div>
-        <h3>*Você não precisa finalizar o ano fiscal para realizar a troca de contabilidade.</h3> 
-
-        <br>
-
+    <!--Corpo do texto-->
+    <div class="box">
         <div class="container2">
-            <div class="header">
-                <h1>Escolha o plano que melhor se adequa à sua necessidade!</h1>
-                <p>Planos completos, com suporte humano e tecnologia para simplificar sua rotina. Escolha o que mais faz sentido para você:</p>
-            </div>
-            
-            <div class="plan-toggle">
-                <button class="toggle-btn active">Serviço</button>
-                
-            </div>
-            
-            <div class="plans-container">
-                <!-- Plano Basic -->
-                <div class="plan-card">
-                    <div class="plan-badge">BENEFÍCIOS EXCLUSIVOS</div>
-                    <h3 class="plan-name">Basic</h3>
-                    <p class="plan-description">Perfeito para quem precisa de suporte, autonomia e agilidade no dia a dia.</p>
-                    
-                    <div class="plan-pricing">
-                        <div class="original-price">de R$ 312,00</div>
-                        <div class="current-price">R$ 249,00</div>
-                        <div class="price-period">/mês</div>
-                        <div class="discount-badge">20% de desconto</div>
+            <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
+                <div id="porque" class="col d-flex flex-column align-items-start gap-2">
+                    <h2 class="fw-bold text-body-emphasis">Porque escolher a Contabilizando?</h2>
+                    <p class="text-body-secondary lead mb-3">Porque fazemos Contabilidade prática para o seu dia a dia.
+                    </p>
+                </div>
+                <div class="col">
+                    <div class="row row-cols-1 row-cols-sm-2 g-4">
+                        <div class="col d-flex flex-column gap-2">
+                            <div
+                                class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+                                <i class="bi bi-collection"></i>
+                            </div>
+                            <h4 class="fw-semibold mb-0 text-body-emphasis">Atendimento Rápido</h4>
+                            <p class="text-body-secondary">Tenha suporte com contadores que vão garantir que sua empresa
+                                esteja regularizada, e sem necessidade de pagamento do 13º salário.</p>
+                        </div>
+                        <div class="col d-flex flex-column gap-2">
+                            <div
+                                class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+                                <i class="bi bi-toggles2"></i>
+                            </div>
+                            <h4 class="fw-semibold mb-0 text-body-emphasis">Contabilidade Completa</h4>
+                            <p class="text-body-secondary">Cuidamos de todas as obrigações contábeis, desde cálculo de
+                                impostos, declarações e o que for preciso junto a Receita Federal, estadual e
+                                prefeitura.</p>
+                        </div>
+                        <div class="col d-flex flex-column gap-2">
+                            <div
+                                class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+                                <i class="bi bi-speedometer"></i>
+                            </div>
+                            <h4 class="fw-semibold mb-0 text-body-emphasis">Atuacao Nacional</h4>
+                            <p class="text-body-secondary">Atendemos todos os estados do Brasil com praticidade,
+                                agilidade e suporte para facilitar sua rotina contábil onde você estiver.</p>
+                        </div>
+                        <div class="col d-flex flex-column gap-2">
+                            <div
+                                class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+                                <i class="bi bi-gear-fill"></i>
+                            </div>
+                            <h4 class="fw-semibold mb-0 text-body-emphasis">Atendimento prátio e Rápido</h4>
+                            <p class="text-body-secondary">Nos adaptamos ao seu tempo e necessidade.</p>
+                        </div>
                     </div>
-                    
-                    <button class="plan-button">Contratar</button>
-                    
-                    <ul class="features-list">
-                        <li class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Contabilidade completa</span>
-                        </li>
-                        <li class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Certificado digital incluído</span>
-                        </li>
-                        <li class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Painel contábil</span>
-                        </li>
-                        <li class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Atendimento por telefone, chat, e-mail e whatsapp das 8h às 18h</span>
-                        </li>
-                        <li class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Painel de RH: Até 3 pessoas</span>
-                        </li>
-                        <li class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Financeiro automático</span>
-                        </li>
-                        <li class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Importação até 50 notas fiscais</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Plano Unique -->
-                <div class="plan-card featured">
-                    <div class="plan-badge">ESPECIALISTA DEDICADO</div><br>
-                    <h3 class="plan-name">Unique</h3>
-                    <p class="plan-description">Tenha um gerente de conta dedicado para sua empresa.</p>
-                    
-                    <div class="plan-pricing">
-                        <div class="original-price">de R$ 500,00</div>
-                        <div class="current-price">R$ 400,00</div>
-                        <div class="price-period">/mês</div>
-                        <div class="discount-badge">20% de desconto</div>
-                    </div>
-                    
-                    <button class="plan-button">Contratar</button>
-                    
-                    <ul class="features-list">
-                        <li class="feature-item">
-                            <span class="feature-text"><strong>Todos os benefícios dos planos anteriores, mais:</strong></span>
-                        </li>
-                        <li class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Gerente de conta exclusivo</span>
-                        </li>
-                        <li class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Painel de RH: Até 5 pessoas</span>
-                        </li>
-                        <li class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Importação e notas fiscais em qualquer município</span>
-                        </li>
-                        <li class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Declaração de Imposto de Renda para Pessoa Física</span>
-                        </li>
-                        <li class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Conciliação financeira</span>
-                        </li>
-                        <li class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Atendimento até 21h com gerente de conta</span>
-                        </li>
-                        <li class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Consultoria contábil com especialistas</span>
-                        </li>
-                        <li class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Agendamento de contas ou emissão de notas fiscais: Até 40 operações por mês</span>
-                        </li>
-                        <li class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Importação até 100 notas fiscais</span>
-                        </li>
-                        <li class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Importação de extrato bancário: Até 2 contas</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Plano Unique Plus -->
-                <div class="plan-card">
-                    <h3 class="plan-name">Unique Plus</h3>
-                    <p class="plan-description">Para quem tem uma operação maior e mais demandas financeiras.</p>
-                    
-                    <div class="plan-pricing">
-                        <div class="original-price">de R$ 875,00</div>
-                        <div class="current-price">R$ 700,00</div>
-                        <div class="price-period">/mês</div>
-                        <div class="discount-badge">20% de desconto</div>
-                    </div>
-                    
-                    <button class="plan-button">Contratar</button>
-                    
-                    <ul class="features-list">
-                        <li class="feature-item">
-                            <span class="feature-text"><strong>Todos os benefícios dos planos anteriores, mais:</strong></span>
-                        </li>
-                        <li class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Painel de RH: Até 10 pessoas</span>
-                        </li>
-                        <li class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Agendamento de contas ou emissão de notas fiscais: Até 100 operações por mês</span>
-                        </li>
-                        <li class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Importação até 800 notas fiscais</span>
-                        </li>
-                        <li class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Importação de extrato bancário: Até 3 contas</span>
-                        </li>
-                    </ul>
                 </div>
             </div>
-            
-            <div class="footer-note">
-                *Valores válidos para empresas do Simples Nacional. Para Lucro Presumido, fale com os especialistas.
-            </div>
-        </div><br>
-
-             
-
-
-        <section>
-            <div class="toggler">
-                <div id="effect" class="ui-widget-content ui-corner-all">
-                    <h3 class="ui-widget-header ui-corner-all">Trocar de escritorio?</h3>
-                    <p>Conduzimos a transição com seu escritório anterior, garantindo uma troca completa e sem perdas de informação.</p>
-                </div>
-            </div><br>
-            <button id="button" class="ui-state-default ui-corner-all">Clique aqui</button><br><br>
-        </section>
-
-                      
-        <div class="container-3"> 
-            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"> 
-                <div class="col-md-4 d-flex align-items-center"> 
-                    <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1" aria-label="Bootstrap"> 
-                        <svg class="bi" width="30" height="24" aria-hidden="true">
-                            <use xlink:href="#bootstrap"></use>
-                        </svg> 
-                    </a> 
-                    <span class="mb-3 mb-md-0 text-body-secondary">© 2025 Contabilizando, marca registrada</span> 
-                </div> 
-                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex"> 
-                    
-                </ul> 
-            </footer> 
         </div>
-        
+    </div>
 
-        <!-- Scripts -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-            crossorigin="anonymous">
+    <!--Corpo texto secubdário-->
+    <div id="funciona" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+            <div class="card shadow-sm">
+                <img src="image/thum01.jpeg" alt="contab foto">
+                <div class="card-body">
+                    <p class="card-text">Análise de informações:
+                        Nossos contadores vão analisar as informações da sua empresa e, em até 24 horas, enviaremos um
+                        relatório completo, para que sua empresa esteja regularizada.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card shadow-sm">
+                <img src="image/cont3.jpeg" alt="foto ilustrativa Contabilidade">
+                <div class="card-body">
+                    <p class="card-text">Envio de documentações:
+                        Agora você só precisa enviar para nossos especialistas todas as documentações necessárias para
+                        assumirmos a sua contabilidade.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card shadow-sm">
+                <img src="image/thumb03.jpeg" alt="foto ilustrativa Contabilidade">
+                <div class="card-body">
+                    <p class="card-text">Tudo pronto!
+                        Agora sua contabilidade faz parte da Agilize! A partir de agora assumimos toda a parte
+                        burocrática e você pode focar no que importa: fazer a sua empresa crescer.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3>*Você não precisa finalizar o ano fiscal para realizar a troca de contabilidade.</h3>
+
+    <br>
+
+    <div class="container2">
+        <div class="header">
+            <h1>Escolha o plano que melhor se adequa à sua necessidade!</h1>
+            <p>Planos completos, com suporte humano e tecnologia para simplificar sua rotina. Escolha o que mais faz
+                sentido para você:</p>
+        </div>
+
+        <div class="plan-toggle">
+            <button class="toggle-btn active">Serviço</button>
+
+        </div>
+
+        <div id="servicos" class="plans-container">
+            <!-- Plano Basic -->
+            <div class="plan-card">
+                <div class="plan-badge">BENEFÍCIOS EXCLUSIVOS</div>
+                <h3 class="plan-name">Basic</h3>
+                <p class="plan-description">Perfeito para quem precisa de suporte, autonomia e agilidade no dia a dia.
+                </p>
+
+                <div class="plan-pricing">
+                    <div class="original-price">de R$ 312,00</div>
+                    <div class="current-price">R$ 249,00</div>
+                    <div class="price-period">/mês</div>
+                    <div class="discount-badge">20% de desconto</div>
+                </div>
+
+                <button class="plan-button">Contratar</button>
+
+                <ul class="features-list">
+                    <li class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Contabilidade completa</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Certificado digital incluído</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Painel contábil</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Atendimento por telefone, chat, e-mail e whatsapp das 8h às
+                            18h</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Painel de RH: Até 3 pessoas</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Financeiro automático</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Importação até 50 notas fiscais</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Plano Unique -->
+            <div class="plan-card featured">
+                <div class="plan-badge">ESPECIALISTA DEDICADO</div><br>
+                <h3 class="plan-name">Unique</h3>
+                <p class="plan-description">Tenha um gerente de conta dedicado para sua empresa.</p>
+
+                <div class="plan-pricing">
+                    <div class="original-price">de R$ 500,00</div>
+                    <div class="current-price">R$ 400,00</div>
+                    <div class="price-period">/mês</div>
+                    <div class="discount-badge">20% de desconto</div>
+                </div>
+
+                <button class="plan-button">Contratar</button>
+
+                <ul class="features-list">
+                    <li class="feature-item">
+                        <span class="feature-text"><strong>Todos os benefícios dos planos anteriores,
+                                mais:</strong></span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Gerente de conta exclusivo</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Painel de RH: Até 5 pessoas</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Importação e notas fiscais em qualquer município</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Declaração de Imposto de Renda para Pessoa Física</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Conciliação financeira</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Atendimento até 21h com gerente de conta</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Consultoria contábil com especialistas</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Agendamento de contas ou emissão de notas fiscais: Até 40 operações
+                            por mês</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Importação até 100 notas fiscais</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Importação de extrato bancário: Até 2 contas</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Plano Unique Plus -->
+            <div class="plan-card">
+                <h3 class="plan-name">Unique Plus</h3>
+                <p class="plan-description">Para quem tem uma operação maior e mais demandas financeiras.</p>
+
+                <div class="plan-pricing">
+                    <div class="original-price">de R$ 875,00</div>
+                    <div class="current-price">R$ 700,00</div>
+                    <div class="price-period">/mês</div>
+                    <div class="discount-badge">20% de desconto</div>
+                </div>
+
+                <button class="plan-button">Contratar</button>
+
+                <ul class="features-list">
+                    <li class="feature-item">
+                        <span class="feature-text"><strong>Todos os benefícios dos planos anteriores,
+                                mais:</strong></span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Painel de RH: Até 10 pessoas</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Agendamento de contas ou emissão de notas fiscais: Até 100 operações
+                            por mês</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Importação até 800 notas fiscais</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span class="feature-text">Importação de extrato bancário: Até 3 contas</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            *Valores válidos para empresas do Simples Nacional. Para Lucro Presumido, fale com os especialistas.
+        </div>
+    </div><br>
+    <br>
+    <br>
+
+
+    <div class="container-3">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1"
+                    aria-label="Bootstrap">
+                    <svg class="bi" width="30" height="24" aria-hidden="true">
+                        <use xlink:href="#bootstrap"></use>
+                    </svg>
+                </a>
+                <span class="mb-3 mb-md-0 text-body-secondary">© 2025 Contabilizando, marca registrada</span>
+            </div>
+            <ul id="contato" class="nav col-md-4 justify-content-end list-unstyled d-flex">
+            
+                <p><i class="bi bi-phone-vibrate"></i> Contatos Tel. xx xxxx xxxx</p>
+            </ul>
+        </footer>
+    </div>
+
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
         </script>
-        
-        <script>
-            // Script para alternar entre os botões de Serviço/Comércio
-            document.querySelectorAll('.toggle-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    document.querySelectorAll('.toggle-btn').forEach(btn => {
-                        btn.classList.remove('active');
-                        btn.classList.add('inactive');
-                    });
-                    this.classList.remove('inactive');
-                    this.classList.add('active'); // Aspas fechadas aqui
-                }); // Fechamento da função do eventListener
-            }); // Fechamento do forEach
-        </script>
-    </body>
+
+
+</body>
+
 </html>
-
-
