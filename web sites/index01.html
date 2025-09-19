@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+
+    <style>
+        /* From Uiverse.io by Admin12121 */
+        .menu {
+            padding: 0.5rem;
+            background-color: #fff;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px 0 rgba(#000, 0.075);
+        }
+
+        .link {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 70px;
+            height: 50px;
+            border-radius: 8px;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            transform-origin: center left;
+            transition: width 0.2s ease-in;
+            text-decoration: none;
+            color: inherit;
+
+            &:before {
+                position: absolute;
+                z-index: -1;
+                content: "";
+                display: block;
+                border-radius: 8px;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                transform: translateX(100%);
+                transition: transform 0.2s ease-in;
+                transform-origin: center right;
+                background-color: #eee;
+            }
+
+            &:hover,
+            &:focus {
+                outline: 0;
+                width: 130px;
+
+                &:before,
+                .link-title {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        }
+
+        .link-icon {
+            width: 28px;
+            height: 28px;
+            display: block;
+            flex-shrink: 0;
+            left: 18px;
+            position: absolute;
+
+            svg {
+                width: 28px;
+                height: 28px;
+            }
+        }
+
+        .link-title {
+            transform: translateX(100%);
+            transition: transform 0.2s ease-in;
+            transform-origin: center right;
+            display: block;
+            text-align: center;
+            text-indent: 28px;
+            width: 100%;
+        }
+
+
+        /* From Uiverse.io by vinodjangid07 */
+        .loader {
+            width: fit-content;
+            height: fit-content;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .truckWrapper {
+            width: 200px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            align-items: center;
+            justify-content: flex-end;
+            overflow-x: hidden;
+        }
+
+        /* truck upper body */
+        .truckBody {
+            width: 130px;
+            height: fit-content;
+            margin-bottom: 6px;
+            animation: motion 1s linear infinite;
+        }
+
+        /* truck suspension animation*/
+        @keyframes motion {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(3px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* truck's tires */
+        .truckTires {
+            width: 130px;
+            height: fit-content;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0px 10px 0px 15px;
+            position: absolute;
+            bottom: 0;
+        }
+
+        .truckTires svg {
+            width: 24px;
+        }
+
+        .road {
+            width: 100%;
+            height: 1.5px;
+            background-color: #282828;
+            position: relative;
+            bottom: 0;
+            align-self: flex-end;
+            border-radius: 3px;
+        }
+
+        .road::before {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 100%;
+            background-color: #282828;
+            right: -50%;
+            border-radius: 3px;
+            animation: roadAnimation 1.4s linear infinite;
+            border-left: 10px solid white;
+        }
+
+        .road::after {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 100%;
+            background-color: #282828;
+            right: -65%;
+            border-radius: 3px;
+            animation: roadAnimation 1.4s linear infinite;
+            border-left: 4px solid white;
+        }
+
+        .lampPost {
+            position: absolute;
+            bottom: 0;
+            right: -90%;
+            height: 90px;
+            animation: roadAnimation 1.4s linear infinite;
+        }
+
+        @keyframes roadAnimation {
+            0% {
+                transform: translateX(0px);
+            }
+
+            100% {
+                transform: translateX(-350px);
+            }
+        }
+    </style>
+    <style>
+        /* From Uiverse.io by alexruix */
+        /*Loader*/
+        .loader2 {
+            position: relative;
+            width: 120px;
+            height: 90px;
+            margin: 0 auto;
+        }
+
+        .loader2:before {
+            content: "";
+            position: absolute;
+            bottom: 30px;
+            left: 50px;
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            background: #2a9d8f;
+            animation: loading-bounce 0.5s ease-in-out infinite alternate;
+        }
+
+        .loader2:after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 7px;
+            width: 45px;
+            border-radius: 4px;
+            box-shadow: 0 5px 0 #752b2b, -35px 50px 0 #752b2b, -70px 95px 0 #752b2b;
+            animation: loading-step 1s ease-in-out infinite;
+        }
+
+        @keyframes loading-bounce {
+            0% {
+                transform: scale(1, 0.7);
+            }
+
+            40% {
+                transform: scale(0.8, 1.2);
+            }
+
+            60% {
+                transform: scale(1, 1);
+            }
+
+            100% {
+                bottom: 140px;
+            }
+        }
+
+        @keyframes loading-step {
+            0% {
+                box-shadow: 0 10px 0 rgba(0, 0, 0, 0),
+                    0 10px 0 #752b2b,
+                    -35px 50px 0 #752b2b,
+                    -70px 90px 0 #752b2b;
+            }
+
+            100% {
+                box-shadow: 0 10px 0 #f2f2f2,
+                    -35px 50px 0 #f2f2f2,
+                    -70px 90px 0 #f2f2f2,
+                    -70px 90px 0 rgba(0, 0, 0, 0);
+            }
+        }
+    </style>
+
+    <style>
+        /* From Uiverse.io by Smit-Prajapati */
+        .parent {
+            width: 290px;
+            height: 300px;
+            perspective: 1000px;
+        }
+
+        .card {
+            height: 100%;
+            border-radius: 50px;
+            background: linear-gradient(135deg, rgb(0, 255, 214) 0%, rgb(8, 226, 96) 100%);
+            transition: all 0.5s ease-in-out;
+            transform-style: preserve-3d;
+            box-shadow: rgba(5, 71, 17, 0) 40px 50px 25px -40px, rgba(5, 71, 17, 0.2) 0px 25px 25px -5px;
+        }
+
+        .glass {
+            transform-style: preserve-3d;
+            position: absolute;
+            inset: 8px;
+            border-radius: 55px;
+            border-top-right-radius: 100%;
+            background: linear-gradient(0deg, rgba(255, 255, 255, 0.349) 0%, rgba(255, 255, 255, 0.815) 100%);
+            /* -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px); */
+            transform: translate3d(0px, 0px, 25px);
+            border-left: 1px solid white;
+            border-bottom: 1px solid white;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .content {
+            padding: 100px 60px 0px 30px;
+            transform: translate3d(0, 0, 26px);
+        }
+
+        .content .title {
+            display: block;
+            color: #00894d;
+            font-weight: 900;
+            font-size: 20px;
+        }
+
+        .content .text {
+            display: block;
+            color: rgba(0, 137, 78, 0.7647058824);
+            font-size: 15px;
+            margin-top: 20px;
+        }
+
+        .bottom {
+            padding: 10px 12px;
+            transform-style: preserve-3d;
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transform: translate3d(0, 0, 26px);
+        }
+
+        .bottom .view-more {
+            display: flex;
+            align-items: center;
+            width: 40%;
+            justify-content: flex-end;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .bottom .view-more:hover {
+            transform: translate3d(0, 0, 10px);
+        }
+
+        .bottom .view-more .view-more-button {
+            background: none;
+            border: none;
+            color: #00c37b;
+            font-weight: bolder;
+            font-size: 12px;
+        }
+
+        .bottom .view-more .svg {
+            fill: none;
+            stroke: #00c37b;
+            stroke-width: 3px;
+            max-height: 15px;
+        }
+
+        .bottom .social-buttons-container {
+            display: flex;
+            gap: 10px;
+            transform-style: preserve-3d;
+        }
+
+        .bottom .social-buttons-container .social-button {
+            width: 30px;
+            aspect-ratio: 1;
+            padding: 5px;
+            background: rgb(255, 255, 255);
+            border-radius: 50%;
+            border: none;
+            display: grid;
+            place-content: center;
+            box-shadow: rgba(5, 71, 17, 0.5) 0px 7px 5px -5px;
+        }
+
+        .bottom .social-buttons-container .social-button:first-child {
+            transition: transform 0.2s ease-in-out 0.4s, box-shadow 0.2s ease-in-out 0.4s;
+        }
+
+        .bottom .social-buttons-container .social-button:nth-child(2) {
+            transition: transform 0.2s ease-in-out 0.6s, box-shadow 0.2s ease-in-out 0.6s;
+        }
+
+        .bottom .social-buttons-container .social-button:nth-child(3) {
+            transition: transform 0.2s ease-in-out 0.8s, box-shadow 0.2s ease-in-out 0.8s;
+        }
+
+        .bottom .social-buttons-container .social-button .svg {
+            width: 15px;
+            fill: #00894d;
+        }
+
+        .bottom .social-buttons-container .social-button:hover {
+            background: black;
+        }
+
+        .bottom .social-buttons-container .social-button:hover .svg {
+            fill: white;
+        }
+
+        .bottom .social-buttons-container .social-button:active {
+            background: rgb(255, 234, 0);
+        }
+
+        .bottom .social-buttons-container .social-button:active .svg {
+            fill: black;
+        }
+
+        .logo {
+            position: absolute;
+            right: 0;
+            top: 0;
+            transform-style: preserve-3d;
+        }
+
+        .logo .circle {
+            display: block;
+            position: absolute;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            top: 0;
+            right: 0;
+            box-shadow: rgba(100, 100, 111, 0.2) -10px 10px 20px 0px;
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+            background: rgba(0, 249, 203, 0.2);
+            transition: all 0.5s ease-in-out;
+        }
+
+        .logo .circle1 {
+            width: 170px;
+            transform: translate3d(0, 0, 20px);
+            top: 8px;
+            right: 8px;
+        }
+
+        .logo .circle2 {
+            width: 140px;
+            transform: translate3d(0, 0, 40px);
+            top: 10px;
+            right: 10px;
+            -webkit-backdrop-filter: blur(1px);
+            backdrop-filter: blur(1px);
+            transition-delay: 0.4s;
+        }
+
+        .logo .circle3 {
+            width: 110px;
+            transform: translate3d(0, 0, 60px);
+            top: 17px;
+            right: 17px;
+            transition-delay: 0.8s;
+        }
+
+        .logo .circle4 {
+            width: 80px;
+            transform: translate3d(0, 0, 80px);
+            top: 23px;
+            right: 23px;
+            transition-delay: 1.2s;
+        }
+
+        .logo .circle5 {
+            width: 50px;
+            transform: translate3d(0, 0, 100px);
+            top: 30px;
+            right: 30px;
+            display: grid;
+            place-content: center;
+            transition-delay: 1.6s;
+        }
+
+        .logo .circle5 .svg {
+            width: 20px;
+            fill: white;
+        }
+
+        .parent:hover .card {
+            transform: rotate3d(1, 1, 0, 30deg);
+            box-shadow: rgba(5, 71, 17, 0.3) 30px 50px 25px -40px, rgba(5, 71, 17, 0.1) 0px 25px 30px 0px;
+        }
+
+        .parent:hover .card .bottom .social-buttons-container .social-button {
+            transform: translate3d(0, 0, 50px);
+            box-shadow: rgba(5, 71, 17, 0.2) -5px 20px 10px 0px;
+        }
+
+        .parent:hover .card .logo .circle2 {
+            transform: translate3d(0, 0, 60px);
+        }
+
+        .parent:hover .card .logo .circle3 {
+            transform: translate3d(0, 0, 80px);
+        }
+
+        .parent:hover .card .logo .circle4 {
+            transform: translate3d(0, 0, 100px);
+        }
+
+        .parent:hover .card .logo .circle5 {
+            transform: translate3d(0, 0, 120px);
+        }
+    </style>
+
+    <style>
+        /* From Uiverse.io by musashi-13 */
+        @keyframes autoRun3d {
+            from {
+                transform: perspective(800px) rotateY(-360deg);
+            }
+
+            to {
+                transform: perspective(800px) rotateY(0deg);
+            }
+        }
+
+        @keyframes animateBrightness {
+            10% {
+                filter: brightness(1);
+            }
+
+            50% {
+                filter: brightness(0.1);
+            }
+
+            90% {
+                filter: brightness(1);
+            }
+        }
+
+        .card-3d {
+            position: relative;
+            width: 400px;
+            height: 200px;
+            transform-style: preserve-3d;
+            transform: perspective(800px);
+            animation: autoRun3d 20s linear infinite;
+            will-change: transform;
+        }
+
+        .card-3d div {
+            position: absolute;
+            width: 80px;
+            height: 112px;
+            background-color: rgb(199, 199, 199);
+            border: solid 2px lightgray;
+            border-radius: 0.5rem;
+            top: 50%;
+            left: 50%;
+            transform-origin: center center;
+            animation: animateBrightness 20s linear infinite;
+            transition-duration: 200ms;
+            will-change: transform, filter;
+        }
+
+        .card-3d:hover {
+            animation-play-state: paused !important;
+        }
+
+        .card-3d:hover div {
+            animation-play-state: paused !important;
+        }
+
+        .card-3d div:nth-child(1) {
+            transform: translate(-50%, -50%) rotateY(0deg) translateZ(150px);
+            animation-delay: -0s;
+        }
+
+        .card-3d div:nth-child(2) {
+            transform: translate(-50%, -50%) rotateY(36deg) translateZ(150px);
+            animation-delay: -2s;
+        }
+
+        .card-3d div:nth-child(3) {
+            transform: translate(-50%, -50%) rotateY(72deg) translateZ(150px);
+            animation-delay: -4s;
+        }
+
+        .card-3d div:nth-child(4) {
+            transform: translate(-50%, -50%) rotateY(108deg) translateZ(150px);
+            animation-delay: -6s;
+        }
+
+        .card-3d div:nth-child(5) {
+            transform: translate(-50%, -50%) rotateY(144deg) translateZ(150px);
+            animation-delay: -8s;
+        }
+
+        .card-3d div:nth-child(6) {
+            transform: translate(-50%, -50%) rotateY(180deg) translateZ(150px);
+            animation-delay: -10s;
+        }
+
+        .card-3d div:nth-child(7) {
+            transform: translate(-50%, -50%) rotateY(216deg) translateZ(150px);
+            animation-delay: -12s;
+        }
+
+        .card-3d div:nth-child(8) {
+            transform: translate(-50%, -50%) rotateY(252deg) translateZ(150px);
+            animation-delay: -14s;
+        }
+
+        .card-3d div:nth-child(9) {
+            transform: translate(-50%, -50%) rotateY(288deg) translateZ(150px);
+            animation-delay: -16s;
+        }
+
+        .card-3d div:nth-child(10) {
+            transform: translate(-50%, -50%) rotateY(324deg) translateZ(150px);
+            animation-delay: -18s;
+        }
+
+        .card-3d {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .altura {
+            /* Altura fixa para todos os cards */
+            height: 200px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .altura img {
+            /* Mantém a proporção e preenche o container */
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        #imagens .altura {
+            height: 200px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        }
+
+        #imagens img {
+            height: auto;
+            max-width: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- From Uiverse.io by Admin12121 -->
+    <div class="menu">
+        <a href="#mudanca" class="link">
+            <span class="link-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855A8 8 0 0 0 5.145 4H7.5zM4.09 4a9.3 9.3 0 0 1 .64-1.539 7 7 0 0 1 .597-.933A7.03 7.03 0 0 0 2.255 4zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a7 7 0 0 0-.656 2.5zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5zM8.5 5v2.5h2.99a12.5 12.5 0 0 0-.337-2.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5zM5.145 12q.208.58.468 1.068c.552 1.035 1.218 1.65 1.887 1.855V12zm.182 2.472a7 7 0 0 1-.597-.933A9.3 9.3 0 0 1 4.09 12H2.255a7 7 0 0 0 3.072 2.472M3.82 11a13.7 13.7 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5zm6.853 3.472A7 7 0 0 0 13.745 12H11.91a9.3 9.3 0 0 1-.64 1.539 7 7 0 0 1-.597.933M8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855q.26-.487.468-1.068zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.7 13.7 0 0 1-.312 2.5m2.802-3.5a7 7 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7 7 0 0 0-3.072-2.472c.218.284.418.598.597.933M10.855 4a8 8 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4z" />
+                </svg>
+            </span>
+            <span class="link-title">Pra onde</span>
+        </a>
+        <a href="#unidades" class="link">
+            <span class="link-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-houses"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M5.793 1a1 1 0 0 1 1.414 0l.647.646a.5.5 0 1 1-.708.708L6.5 1.707 2 6.207V12.5a.5.5 0 0 0 .5.5.5.5 0 0 1 0 1A1.5 1.5 0 0 1 1 12.5V7.207l-.146.147a.5.5 0 0 1-.708-.708zm3 1a1 1 0 0 1 1.414 0L12 3.793V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v3.293l1.854 1.853a.5.5 0 0 1-.708.708L15 8.207V13.5a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 4 13.5V8.207l-.146.147a.5.5 0 1 1-.708-.708zm.707.707L5 7.207V13.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5V7.207z" />
+                </svg>
+            </span>
+            <span class="link-title">Unidades</span>
+        </a>
+        <a href="#contatos" class="link">
+            <span class="link-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="currentColor"
+                    viewBox="0 0 256 256">
+                    <rect width="256" height="256" fill="none"></rect>
+                    <path
+                        d="M45.42853,176.99811A95.95978,95.95978,0,1,1,79.00228,210.5717l.00023-.001L45.84594,220.044a8,8,0,0,1-9.89-9.89l9.47331-33.15657Z"
+                        fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="16"></path>
+                    <line x1="96" y1="112" x2="160" y2="112" fill="none" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="16"></line>
+                    <line x1="96" y1="144" x2="160" y2="144" fill="none" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="16"></line>
+                </svg>
+            </span>
+            <span class="link-title">Contato</span>
+        </a>
+
+        <a href="#servico" class="link">
+            <span class="link-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="currentColor"
+                    viewBox="0 0 256 256">
+                    <rect width="256" height="256" fill="none"></rect>
+                    <circle cx="116" cy="116" r="84" fill="none" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="16"></circle>
+                    <line x1="175.39356" y1="175.40039" x2="223.99414" y2="224.00098" fill="none" stroke="currentColor"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+                </svg>
+            </span>
+            <span class="link-title">Serviços</span>
+        </a>
+        <a href="#transforme" class="link">
+            <span class="link-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="currentColor"
+                    viewBox="0 0 256 256">
+                    <rect width="256" height="256" fill="none"></rect>
+                    <circle cx="128" cy="96" r="64" fill="none" stroke="currentColor" stroke-miterlimit="10"
+                        stroke-width="16"></circle>
+                    <path d="M30.989,215.99064a112.03731,112.03731,0,0,1,194.02311.002" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
+                </svg>
+            </span>
+            <span class="link-title">Profile</span>
+        </a>
+    </div>
+
+
+
+    <div class="container">
+        <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+            <div class="col-10 col-sm-8 col-lg-6"> <img src="imagens/transporte02.jpg"
+                    class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+            </div>
+            <div class="col-lg-6">
+                <h1 id="mudanca" class="display-5 fw-bold text-body-emphasis lh-1 mb-3">QUAL A MUDANÇA PARA HOJE?</h1>
+                <h2>Residencial,Comercial ou Internacional, a Transporter resolve para voce ou para a sua Empresa!</h2>
+                <p class="lead">Com mais de 7 anos de atuação no Brasil, a Transporter Transportes é especialista em
+                    soluções para qualquer tipo de mudança nacional ou internacional.
+                    Seja para você ou para a empresa quando o assunto for mudança a Granero oferece as mais completas e
+                    consagradas soluções do mercado.</p>
+                <div>
+                    <!-- From Uiverse.io by vinodjangid07 -->
+                    <div class="loader">
+                        <div class="truckWrapper">
+                            <div class="truckBody">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 198 93"
+                                    class="trucksvg">
+                                    <path stroke-width="3" stroke="#282828" fill="#F83D3D"
+                                        d="M135 22.5H177.264C178.295 22.5 179.22 23.133 179.594 24.0939L192.33 56.8443C192.442 57.1332 192.5 57.4404 192.5 57.7504V89C192.5 90.3807 191.381 91.5 190 91.5H135C133.619 91.5 132.5 90.3807 132.5 89V25C132.5 23.6193 133.619 22.5 135 22.5Z">
+                                    </path>
+                                    <path stroke-width="3" stroke="#282828" fill="#7D7C7C"
+                                        d="M146 33.5H181.741C182.779 33.5 183.709 34.1415 184.078 35.112L190.538 52.112C191.16 53.748 189.951 55.5 188.201 55.5H146C144.619 55.5 143.5 54.3807 143.5 53V36C143.5 34.6193 144.619 33.5 146 33.5Z">
+                                    </path>
+                                    <path stroke-width="2" stroke="#282828" fill="#282828"
+                                        d="M150 65C150 65.39 149.763 65.8656 149.127 66.2893C148.499 66.7083 147.573 67 146.5 67C145.427 67 144.501 66.7083 143.873 66.2893C143.237 65.8656 143 65.39 143 65C143 64.61 143.237 64.1344 143.873 63.7107C144.501 63.2917 145.427 63 146.5 63C147.573 63 148.499 63.2917 149.127 63.7107C149.763 64.1344 150 64.61 150 65Z">
+                                    </path>
+                                    <rect stroke-width="2" stroke="#282828" fill="#FFFCAB" rx="1" height="7" width="5"
+                                        y="63" x="187"></rect>
+                                    <rect stroke-width="2" stroke="#282828" fill="#282828" rx="1" height="11" width="4"
+                                        y="81" x="193"></rect>
+                                    <rect stroke-width="3" stroke="#282828" fill="#DFDFDF" rx="2.5" height="90"
+                                        width="121" y="1.5" x="6.5"></rect>
+                                    <rect stroke-width="2" stroke="#282828" fill="#DFDFDF" rx="2" height="4" width="6"
+                                        y="84" x="1"></rect>
+                                </svg>
+                            </div>
+                            <div class="truckTires">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 30 30" class="tiresvg">
+                                    <circle stroke-width="3" stroke="#282828" fill="#282828" r="13.5" cy="15" cx="15">
+                                    </circle>
+                                    <circle fill="#DFDFDF" r="7" cy="15" cx="15"></circle>
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 30 30" class="tiresvg">
+                                    <circle stroke-width="3" stroke="#282828" fill="#282828" r="13.5" cy="15" cx="15">
+                                    </circle>
+                                    <circle fill="#DFDFDF" r="7" cy="15" cx="15"></circle>
+                                </svg>
+                            </div>
+                            <div class="road"></div>
+
+                            <svg xml:space="preserve" viewBox="0 0 453.459 453.459"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                                id="Capa_1" version="1.1" fill="#000000" class="lampPost">
+                                <path d="M252.882,0c-37.781,0-68.686,29.953-70.245,67.358h-6.917v8.954c-26.109,2.163-45.463,10.011-45.463,19.366h9.993
+                                    c-1.65,5.146-2.507,10.54-2.507,16.017c0,28.956,23.558,52.514,52.514,52.514c28.956,0,52.514-23.558,52.514-52.514
+                                    c0-5.478-0.856-10.872-2.506-16.017h9.992c0-9.354-19.352-17.204-45.463-19.366v-8.954h-6.149C200.189,38.779,223.924,16,252.882,16
+                                    c29.952,0,54.32,24.368,54.32,54.32c0,28.774-11.078,37.009-25.105,47.437c-17.444,12.968-37.216,27.667-37.216,78.884v113.914
+                                    h-0.797c-5.068,0-9.174,4.108-9.174,9.177c0,2.844,1.293,5.383,3.321,7.066c-3.432,27.933-26.851,95.744-8.226,115.459v11.202h45.75
+                                    v-11.202c18.625-19.715-4.794-87.527-8.227-115.459c2.029-1.683,3.322-4.223,3.322-7.066c0-5.068-4.107-9.177-9.176-9.177h-0.795
+                                    V196.641c0-43.174,14.942-54.283,30.762-66.043c14.793-10.997,31.559-23.461,31.559-60.277C323.202,31.545,291.656,0,252.882,0z
+                                    M232.77,111.694c0,23.442-19.071,42.514-42.514,42.514c-23.442,0-42.514-19.072-42.514-42.514c0-5.531,1.078-10.957,3.141-16.017
+                                    h78.747C231.693,100.736,232.77,106.162,232.77,111.694z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="container">
+        <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+            <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+                <h1 id="servico" class="display-4 fw-bold lh-1 text-body-emphasis">SERVIÇOS DE GUARDA MÓVEIS,
+                    SELF-STORAGE E STORAGE.
+                </h1>
+                <p class="lead">O serviço de guarda móveis da Granero é a solução perfeita para quem está em mudança
+                    entre residências ou realizando reformas e precisa de um local seguro para manter móveis e itens
+                    pessoais protegidos. Com flexibilidade de contratos e a segurança que só a Granero pode oferecer, a
+                    integridade dos seus bens é garantida até que estejam prontos para retornar ao seu espaço.</p>
+
+            </div>
+            <div id="imagens" class="col-lg-3 offset-lg-1 p-0 overflow-hidden shadow-lg">
+                <img class="rounded-lg-3 img-fluid" src="imagens/alterar-fotor-enhance-20250919122614.jpg" alt=""
+                    width="720">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <!-- From Uiverse.io by alexruix -->
+        <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+            <div class="loader2"></div>
+            <h1 class="display-5 fw-bold text-body-emphasis">SELF STORAGE</h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">Ideal para quem busca uma extensão do próprio espaço, seja por motivo de mudança,
+                    viagem prolongada ou simplesmente para desafogar a casa de itens pouco usados. O serviço de self
+                    storage da Granero oferece unidades de armazenamento de vários tamanhos, garantindo segurança e
+                    acesso facilitado aos seus pertences, sempre que precisar.</p>
+
+            </div>
+        </div>
+
+    </div><br>
+    <div class="container">
+        <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+            <!-- From Uiverse.io by musashi-13 -->
+            <div class="card-3d">
+                <div class="altura"><img src="imagens/boxe01.jpg" width="auto" height="100px" alt="box photo"></div>
+                <div class="altura"><img src="imagens/boxe2.jpg" width="auto" height="100px" alt="box image"></div>
+                <div class="altura"><img src="imagens/boxe3.jpg" width="auto" height="100px" alt=""></div>
+                <div class="altura"><img src="imagens/boxe4.jpg" width="auto" height="100px" alt=""></div>
+                <div class="altura"><img src="imagens/boxe5.jpg" width="auto" height="100px" alt=""></div>
+                <div class="altura"><img src="imagens/boxe6.jpg" width="auto" height="100px" alt=""></div>
+                <div class="altura"><img src="imagens/boxe7.jpg" width="auto" height="100px" alt=""></div>
+                <div class="altura"><img src="imagens/boxe8.jpg" width="auto" height="100px" alt=""></div>
+                <div class="altura"><img src="imagens/boxe9.jpg" width="auto" height="100px" alt=""></div>
+                <div class="altura"><img src="imagens/boxe10.jpg" width="auto" height="100px" alt=""></div>
+            </div>
+
+            <div class="col-lg-6 mx-auto">
+                <p id="transforme" class="lead mb-4">Transforme sua mudança em uma jornada tranquila! Nossa
+                    transportadora de mudança
+                    está aqui para simplificar o processo e garantir que você se mude com facilidade e confiança. Entre
+                    em contato agora para obter um serviço personalizado e sem preocupações.</p>
+
+            </div>
+        </div>
+
+    </div>
+    <br>
+
+    <div class="container">
+
+        <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+            <div class="row align-items-center g-lg-5 py-5">
+                <div class="col-lg-7 text-center text-lg-start">
+                    <!-- From Uiverse.io by Smit-Prajapati -->
+                    <div class="parent">
+                        <div class="card">
+                            <div class="logo">
+                                <span class="circle circle1"></span>
+                                <span class="circle circle2"></span>
+                                <span class="circle circle3"></span>
+                                <span class="circle circle4"></span>
+                                <span class="circle circle5">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29.667 31.69" class="svg">
+                                        <path id="Path_6" data-name="Path 6"
+                                            d="M12.827,1.628A1.561,1.561,0,0,1,14.31,0h2.964a1.561,1.561,0,0,1,1.483,1.628v11.9a9.252,9.252,0,0,1-2.432,6.852q-2.432,2.409-6.963,2.409T2.4,20.452Q0,18.094,0,13.669V1.628A1.561,1.561,0,0,1,1.483,0h2.98A1.561,1.561,0,0,1,5.947,1.628V13.191a5.635,5.635,0,0,0,.85,3.451,3.153,3.153,0,0,0,2.632,1.094,3.032,3.032,0,0,0,2.582-1.076,5.836,5.836,0,0,0,.816-3.486Z"
+                                            transform="translate(0 0)"></path>
+                                        <path id="Path_7" data-name="Path 7"
+                                            d="M75.207,20.857a1.561,1.561,0,0,1-1.483,1.628h-2.98a1.561,1.561,0,0,1-1.483-1.628V1.628A1.561,1.561,0,0,1,70.743,0h2.98a1.561,1.561,0,0,1,1.483,1.628Z"
+                                            transform="translate(-45.91 0)"></path>
+                                        <path id="Path_8" data-name="Path 8"
+                                            d="M0,80.018A1.561,1.561,0,0,1,1.483,78.39h26.7a1.561,1.561,0,0,1,1.483,1.628v2.006a1.561,1.561,0,0,1-1.483,1.628H1.483A1.561,1.561,0,0,1,0,82.025Z"
+                                            transform="translate(0 -51.963)"></path>
+                                    </svg>
+                                </span>
+
+                            </div>
+                            <div class="glass"></div>
+                            <div id="unidades" class="content">
+                                <span class="title">Nos contate!</span>
+                                <span class="text">Por mais informações", sigam nos nas nossas redes sociais.</span>
+                            </div>
+                            <div class="bottom">
+
+                                <div class="social-buttons-container">
+
+                                    <button class="social-button .social-button1">
+                                        <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" class="svg">
+                                            <path
+                                                d="M 9.9980469 3 C 6.1390469 3 3 6.1419531 3 10.001953 L 3 20.001953 C 3 23.860953 6.1419531 27 10.001953 27 L 20.001953 27 C 23.860953 27 27 23.858047 27 19.998047 L 27 9.9980469 C 27 6.1390469 23.858047 3 19.998047 3 L 9.9980469 3 z M 22 7 C 22.552 7 23 7.448 23 8 C 23 8.552 22.552 9 22 9 C 21.448 9 21 8.552 21 8 C 21 7.448 21.448 7 22 7 z M 15 9 C 18.309 9 21 11.691 21 15 C 21 18.309 18.309 21 15 21 C 11.691 21 9 18.309 9 15 C 9 11.691 11.691 9 15 9 z M 15 11 A 4 4 0 0 0 11 15 A 4 4 0 0 0 15 19 A 4 4 0 0 0 19 15 A 4 4 0 0 0 15 11 z">
+                                            </path>
+
+
+                                        </svg></button>
+                                    <button class="social-button .social-button2">
+                                        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" class="svg">
+                                            <path
+                                                d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                    <button class="social-button .social-button3">
+                                        <svg viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg" class="svg">
+                                            <path
+                                                d="M524.531,69.836a1.5,1.5,0,0,0-.764-.7A485.065,485.065,0,0,0,404.081,32.03a1.816,1.816,0,0,0-1.923.91,337.461,337.461,0,0,0-14.9,30.6,447.848,447.848,0,0,0-134.426,0,309.541,309.541,0,0,0-15.135-30.6,1.89,1.89,0,0,0-1.924-.91A483.689,483.689,0,0,0,116.085,69.137a1.712,1.712,0,0,0-.788.676C39.068,183.651,18.186,294.69,28.43,404.354a2.016,2.016,0,0,0,.765,1.375A487.666,487.666,0,0,0,176.02,479.918a1.9,1.9,0,0,0,2.063-.676A348.2,348.2,0,0,0,208.12,430.4a1.86,1.86,0,0,0-1.019-2.588,321.173,321.173,0,0,1-45.868-21.853,1.885,1.885,0,0,1-.185-3.126c3.082-2.309,6.166-4.711,9.109-7.137a1.819,1.819,0,0,1,1.9-.256c96.229,43.917,200.41,43.917,295.5,0a1.812,1.812,0,0,1,1.924.233c2.944,2.426,6.027,4.851,9.132,7.16a1.884,1.884,0,0,1-.162,3.126,301.407,301.407,0,0,1-45.89,21.83,1.875,1.875,0,0,0-1,2.611,391.055,391.055,0,0,0,30.014,48.815,1.864,1.864,0,0,0,2.063.7A486.048,486.048,0,0,0,610.7,405.729a1.882,1.882,0,0,0,.765-1.352C623.729,277.594,590.933,167.465,524.531,69.836ZM222.491,337.58c-28.972,0-52.844-26.587-52.844-59.239S193.056,219.1,222.491,219.1c29.665,0,53.306,26.82,52.843,59.239C275.334,310.993,251.924,337.58,222.491,337.58Zm195.38,0c-28.971,0-52.843-26.587-52.843-59.239S388.437,219.1,417.871,219.1c29.667,0,53.307,26.82,52.844,59.239C470.715,310.993,447.538,337.58,417.871,337.58Z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="view-more">
+                                    <button class="view-more-button">Telefones abaixo</button>
+                                    <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="m6 9 6 6 6-6"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">UNIDADES TRANSPORTER </h1>
+                    <p class="col-lg-10 fs-4">Atendendo 100% do território nacional, temos unidades espalhadas por todo
+                        brasil. Confira abaixo a lista por estados.</p>
+                </div>
+                <div class="col-md-10 mx-auto col-lg-5">
+                    <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+                        <h2>Pesquise por Estado</h2>
+                        <div class="form-floating mb-3"> <input type="text" class="form-control" id="floatingInput"
+                                placeholder="name@example.com" fdprocessedid="9pjw1v"> <label
+                                for="floatingInput">Estado</label> </div>
+                        <div class="form-floating mb-3"> <input type="email" class="form-control" id="floatingInput"
+                                placeholder="name@example.com" fdprocessedid="9pjw1v"> <label
+                                for="floatingInput">Cidade</label> </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <!--Footer feito pelo Bootstrap-->
+        <div id="contatos" class="container">
+            <div class="d-flex gap-2 justify-content-center py-5"> <span
+                    class="badge text-bg-primary rounded-pill">Contato</span> <span
+                    class="badge text-bg-secondary rounded-pill">021999998877</span> <span
+                    class="badge text-bg-success rounded-pill">--</span> <span
+                    class="badge text-bg-danger rounded-pill">E-mail</span> <span
+                    class="badge text-bg-warning rounded-pill">transporte@yahoo.com</span> <span
+                    class="badge text-bg-danger rounded-pill">--</span></span>
+            </div>
+        </div>
+
+    </div>
+    <br><br><br><br><br><br>
+
+
+
+
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
+        </script>
+
+</body>
+
+</html>
